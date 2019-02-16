@@ -4,9 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content="Tridiagonal Portal"/>
   <meta name="author" content="ECGIT"/>
-  <title>Tridiagonal Portal | <?php echo $title;?></title>
+  <title>WEB Portal | <?php echo $title;?></title>
   <!--favicon-->
-  <link rel="icon" href="<?php echo base_url();?>assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/notifications/css/lobibox.min.css"/>
   <link href="<?php echo base_url();?>assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet"/>

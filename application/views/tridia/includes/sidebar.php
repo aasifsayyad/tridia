@@ -1,7 +1,7 @@
  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
         <div class="brand-logo" ng-click="setMaster('Home')">
             <a href="#!Home">
-             <h5 class="logo-icon logo-text"><img src="<?php echo base_url();?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon" style="width:70px" />Tridiagonal</h5>
+             <h5 class="logo-icon logo-text"><img src="<?php echo base_url();?>assets/images/favicon.png" class="logo-icon" alt="ECG" style="width:65px" />ECGiT</h5>
            </a>
 	</div>
     <ul class="sidebar-menu do-nicescrol">

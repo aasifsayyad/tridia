@@ -65,7 +65,7 @@ app.controller('masterController', function($scope) {
     $("#elementList").change(function (){
         var elementName = $("#elementList option:selected").attr("data-name");//BLOCK ELEMENT NAME FOR IFRAME GRAPH GENERATION
         var iframeUrl= iframeConfigUrl+'?name='+elementName; //IFRAME URL 
-        $('.iframeMap').attr('src', iframeUrl);  
+        //$('.iframeMap').attr('src', iframeUrl);  
         $("#container").empty();
         $("#attributesListLeft").empty();
         $(".tableAttributes").empty();
@@ -75,7 +75,7 @@ app.controller('masterController', function($scope) {
         var WebId = $("#elementList").val();
         
         /***GET CHILD ELEMENTS OF SELECTED BLOCK ELEMENT START***/  
-            var url = baseServiceUrl+'elements/' + WebId + '/elements?templateName=PRODUCER'; 
+            var url = baseServiceUrl+'elements/' + WebId + '/elements?templateName=CELL'; 
             //console.log(url);
             var childElementList =  processJsonContent(url, 'GET', null);
                 $.when(childElementList).fail(function () {

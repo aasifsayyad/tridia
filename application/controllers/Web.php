@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Tridia extends CI_Controller
+class Web extends CI_Controller
 {
     public function __construct()
     {
@@ -43,8 +43,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Master Dashboard";
             $this->load->view('tridia/master_dashboard', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+            redirect(base_url());
         }
     }
     public function summary()
@@ -53,8 +52,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Summary";
             $this->load->view('tridia/default', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+            redirect(base_url());
         }
     }
     public function allocation()
@@ -63,8 +61,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Allocation";
             $this->load->view('tridia/allocation', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+           redirect(base_url());
         }
     }
     public function assetDesign()
@@ -73,8 +70,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Asset Design";
             $this->load->view('tridia/assetDesign', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+          redirect(base_url());
         }
     }
     public function blockMagistral()
@@ -83,8 +79,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Block Magistral";
             $this->load->view('tridia/blockMagistral', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+          redirect(base_url());
         }
     }
     public function chronicles()
@@ -93,8 +88,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Chronicles";
             $this->load->view('tridia/chronicles', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+            redirect(base_url());
         }
     }
     public function ranking()
@@ -103,8 +97,7 @@ class Tridia extends CI_Controller
             $data['title'] = "Ranking";
             $this->load->view('tridia/ranking', $data);
         } else {
-            $data['title'] = "Login";
-            $this->load->view('login', $data);
+           redirect(base_url());
         }
     }
     public function popup($account_type = '', $page_name = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '', $param6 = '')

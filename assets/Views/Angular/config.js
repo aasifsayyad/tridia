@@ -1,10 +1,10 @@
 /***CONFIGURATION SETTING***/
-var base_url = "http://localhost:8080/tridia/";
-var baseServiceUrl = "https://192.168.1.28:1706/piwebapi/"; /***PI WEBAPI URL***/
+var base_url = "http://localhost:8080/web/";
+var baseServiceUrl = "https://114.143.109.122:1706/piwebapi/"; /***PI WEBAPI URL***/
 var user = "Asif";/***USERNAME***/
 var pass = "ECG@123";/***PASSWORD***/
 var afServerName = "ECG-DEV-SERVER";/***AF SERVER NAME***/
-var afDatabaseName = "APOIO_CLIENT";//Aasif_Development//"Mayhar";/***DATABASE NAME***/
+var afDatabaseName = "Aasif_Development";//Aasif_Development//"Mayhar";/***DATABASE NAME***/
 var EnumerationSets = "CONNECTED_TO_PLANT";/***ENUMERATION SET NAME***/
 var templateName = "BLOCK";/***DEFAULT TEMPLATE NAME***/
 var newtemplateName = "MAGISTRAL";/***DEFAULT TEMPLATE NAME***/
@@ -33,13 +33,13 @@ var operators = [
 ];
 var eventsColorsData = [
     {
-        "name":"BALANCE","color":"#058DC7","min":0,"max":150 
+        "name":"BALANCE","color":"#058DC7","min":0,"max":200 
     },
     {
-        "name":"U","color":"#50B432","min":0,"max":130 
+        "name":"U","color":"#50B432","min":0,"max":230 
     },
     { 
-        "name":"KU","color":"#ED561B","min":0,"max":170 
+        "name":"KU","color":"#ED561B","min":0,"max":270 
     },
     { 
         "name":"PH","color":"#DDDF00", "min":0, "max":200 

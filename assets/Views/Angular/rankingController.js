@@ -20,21 +20,21 @@ app.controller('rankingController', function ($scope) {
     var url = baseServiceUrl + 'elements?path=\\\\' + afServerName + '\\' + afDatabaseName + '\\' + rankingParent + '&selectedFields=Name;Webid;Links.Elements';
     var parentList = processJsonContent(url, 'GET', null);
     $.when(parentList).fail(function () {
-        warningmsg("Cannot Find the Parent Element.")
+        warningmsg("Cannot Find the Parent Element.");
     });
     $.when(parentList).done(function () {
         var parentListLinkElements = (parentList.responseJSON.Links.Elements);
         var url = parentListLinkElements + '?templateName=' + defaultRankingTemplate + '&selectedFields=Items.Name;Items.Webid;&searchFullHierarchy=true';
         var parentTemplateList = processJsonContent(url, 'GET', null);
         $.when(parentTemplateList).fail(function () {
-            warningmsg("Cannot Find the Element Templates.")
+            warningmsg("Cannot Find the Element Templates.");
         });
         $.when(parentTemplateList).done(function () {
             var parentTemplateListItems = (parentTemplateList.responseJSON.Items);
             $.each(parentTemplateListItems, function (key) {
-                $("#parentTemplateList").append("<option  data-name=" + parentTemplateListItems[key].Name + " value=" + parentTemplateListItems[key].WebId + ">" + parentTemplateListItems[key].Name + "</option>")
-            })
-        })
+                $("#parentTemplateList").append("<option  data-name=" + parentTemplateListItems[key].Name + " value=" + parentTemplateListItems[key].WebId + ">" + parentTemplateListItems[key].Name + "</option>");
+            });
+        });
     });
     var params = '';
     $.each(rankingParameters, function (key) {
@@ -81,7 +81,7 @@ app.controller('rankingController', function ($scope) {
                 let operator = $("#operator" + filterCnt[i]).val();
                 let val = $("#number" + filterCnt[i]).val();
                 let name = $("#params" + filterCnt[i] + " option:selected").attr("data-name");
-                if (isNaN(index) || index == '' || operator == null || isNaN(val) || val == '') {
+                if (isNaN(index) || index === '' || operator === null || isNaN(val) || val === '') {
                     $("#filtering" + filterCnt[i]).css("border", "1px solid red");
                 } else {
                     $("#filtering" + filterCnt[i]).css("border", "1px solid #dee2e6");
@@ -199,28 +199,28 @@ function getData() {
                 const getNestedObject = (nestedObj, pathArr) => {
                     return pathArr.reduce((obj, key) =>
                         (obj && obj[key] !== 'undefined') ? obj[key] : undefined, nestedObj);
-                }
-                attrValue = "-"
-                if (batchResult.responseJSON.values.Content.Items[valuesID].Status == 200) {
+                };
+                attrValue = "-";
+                if (batchResult.responseJSON.values.Content.Items[valuesID].Status === 200) {
                     var attrV = getNestedObject(batchResult.responseJSON.values,
-                        ['Content', 'Items', valuesID, 'Content', 'Value'])
+                        ['Content', 'Items', valuesID, 'Content', 'Value']);
                     if (attrV !== "" && !isNaN(attrV)) {
                         attrValue = (Math.round((attrV) * 100) / 100);
                     }
                 }
                 elementItems[attrID + 1] = attrValue;
-                valuesID++
+                valuesID++;
             });
             rankingElements[elementID] = elementItems;
         });
         loadTable();
     });
 }
-cols.push({ title: "Name" })
+cols.push({ title: "Name" });
 $.each(rankingParameters, function (key1) {
     cols.push({
         title: rankingParameters[key1].name
-    })
+    });
 });
 
 function deleteParentElement(n, append) {
@@ -239,7 +239,7 @@ function deleteParentElement(n, append) {
 }
 
 function getReload (event){
-    if(event.keyCode==13){
+    if(event.keyCode===13){
        $('#reloadTable').trigger('click');
     }
 }
@@ -252,7 +252,7 @@ function loadTable() {
                 let operator = $("#operator" + filterCnt[i]).val();
                 let val = $("#number" + filterCnt[i]).val();
                 let name = $("#params" + filterCnt[i] + " option:selected").attr("data-name");
-                if (isNaN(index) || index == '' || operator == null || isNaN(val) || val == '') {
+                if (isNaN(index) || index === '' || operator === null || isNaN(val) || val === '') {
                     $("#filtering" + filterCnt[i]).css("border", "1px solid red");
                 } else {
                     $("#filtering" + filterCnt[i]).css("border", "1px solid #dee2e6");
@@ -271,10 +271,10 @@ function loadTable() {
       else { 
                 $("#topTable").html(' <table id="data-table" class="order-column table top-table table-bordered"></table>');
                 $("#bottomTable").html(' <table id="bottom-table" class="order-column table top-table table-bordered"></table>');
-                let v = parseInt($("#parameterList").val())
-                let columnID = v + 1 // the table starts with the NAME
-                let top = rankingParameters[v].top
-                let bottom = rankingParameters[v].bottom
+                let v = parseInt($("#parameterList").val());
+                let columnID = v + 1; // the table starts with the NAME
+                let top = rankingParameters[v].top;
+                let bottom = rankingParameters[v].bottom;
                 $('#data-table').DataTable({
                     data: rankingElements,
                     columns: cols,
@@ -311,11 +311,11 @@ function reloadTable(filteringItems) {
     var filteredData = rankingElements.filter(function (value) {
         let globalCondition = true;
         filteringItems.forEach(function (filteringItem) {
-            let condition = compare(value[filteringItem.index], filteringItem.operator, filteringItem.value) 
-            globalCondition = condition && globalCondition
+            let condition = compare(value[filteringItem.index], filteringItem.operator, filteringItem.value);
+            globalCondition = condition && globalCondition;
         });
-        return globalCondition
-    })
+        return globalCondition;
+    });
 
     function compare(value, operator, valueFromFilter) {
         let b;
@@ -343,10 +343,10 @@ function reloadTable(filteringItems) {
 
     $("#topTable").html(' <table id="data-table" class="order-column table top-table table-bordered"></table>');
     $("#bottomTable").html(' <table id="bottom-table" class="order-column table top-table table-bordered"></table>');
-    let v = parseInt($("#parameterList").val())
-    let columnID = v + 1 // the table starts with the NAME
-    let top = rankingParameters[v].top
-    let bottom = rankingParameters[v].bottom
+    let v = parseInt($("#parameterList").val());
+    let columnID = v + 1; // the table starts with the NAME
+    let top = rankingParameters[v].top;
+    let bottom = rankingParameters[v].bottom;
     $('#data-table').DataTable({
         data: filteredData,
         columns: cols,

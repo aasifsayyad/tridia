@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content="Tridiagonal Portal"/>
   <meta name="author" content="ECGIT"/>
-  <title>Tridiagonal Portal | Login</title>
+  <title>WEB Portal | Login</title>
   <!--favicon-->
-  <link rel="icon" href="<?php echo base_url();?>assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/notifications/css/lobibox.min.css"/>
   <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" type="text/css"/>
@@ -32,7 +32,7 @@
                         <tr>
                             <th colspan="2">
                                 <h5 class="logo-icon logo-text login_head">
-                                    <img src="<?php echo base_url();?>assets/images/logo-icon.png" class="logo-icon" alt="Tridiagonal" style="width:60px" /> Login
+                                    <img src="<?php echo base_url();?>assets/images/favicon.png" class="logo-icon" alt="ECG" style="width:60px" /> Login
                                 </h5>
                             </th>
                         </tr>
