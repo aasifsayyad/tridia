@@ -1,6 +1,6 @@
 var numberArray = [];
-app.controller('masterController', function($scope) {  
-    $scope.pagename = "Master Dashboard";
+app.controller('chartController', function($scope) {  
+    $scope.pagename = "Charts";
     $(".tabDiv").hide();
     var now = new Date();
     $(function() {   
@@ -46,7 +46,7 @@ app.controller('masterController', function($scope) {
                var WebId = (ajaxEF.responseJSON.WebId); 
                
                 /****TEMPLATE ELEMENT SEARCH BY TEMPLATE NAME START****/
-                var url = baseServiceUrl + 'assetdatabases/' + WebId + '/elements?templateName=' + masterTemplateName +'&searchFullHierarchy=true';
+                var url = baseServiceUrl + 'assetdatabases/' + WebId + '/elements?templateName=' + templateName +'&searchFullHierarchy=true';
                     var elementList =  processJsonContent(url, 'GET', null);                    
                     $.when(elementList).fail(function () {
                         warningmsg("Cannot Find the Element Templates.");
@@ -74,6 +74,22 @@ app.controller('masterController', function($scope) {
         $(".tabDiv").show();
         var WebId = $("#elementList").val();
         
+          /***GET CHILD ELEMENTS OF SELECTED BLOCK ELEMENT START***/  
+            var url = baseServiceUrl+'elements/' + WebId + '/elements'; 
+            //console.log(url);
+            var childElementList =  processJsonContent(url, 'GET', null);
+                $.when(childElementList).fail(function () {
+                    //warningmsg("Cannot Find the Child Element On Change.");
+                    console.log("Cannot Find the child Element.");
+                });
+                $.when(childElementList).done(function () {  
+                    $("#elementChildList").append("<option value='' selected disabled>---Select Elements---</option>");
+                     var elementsChildListItems = (childElementList.responseJSON.Items);     
+                     $.each(elementsChildListItems,function(key) {
+                          $("#elementChildList").append("<option data-name="+elementsChildListItems[key].Name+" value="+elementsChildListItems[key].WebId+">"+elementsChildListItems[key].Name+"</option>"); 
+                        });
+                });
+        /***GET CHILD ELEMENTS OF SELECTED BLOCK ELEMENT END***/ 
         
     /*****GET CHART DATA AND VALUE AND TIMESTAMP ATTRIBUTES START****/
         var url = baseServiceUrl + 'elements/' + WebId + '/attributes';

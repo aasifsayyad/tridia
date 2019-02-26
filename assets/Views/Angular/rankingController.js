@@ -201,7 +201,7 @@ function getData() {
                         (obj && obj[key] !== 'undefined') ? obj[key] : undefined, nestedObj);
                 };
                 attrValue = "-";
-                if (batchResult.responseJSON.values.Content.Items[valuesID].Status === 200) {
+                if (batchResult.responseJSON.values.Content.Items[valuesID].Status == 200) {
                     var attrV = getNestedObject(batchResult.responseJSON.values,
                         ['Content', 'Items', valuesID, 'Content', 'Value']);
                     if (attrV !== "" && !isNaN(attrV)) {

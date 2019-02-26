@@ -1,11 +1,12 @@
 /***CONFIGURATION SETTING***/
 var base_url = "http://localhost:8080/web/";
-var baseServiceUrl = "https://114.143.109.122:1706/piwebapi/"; /***PI WEBAPI URL***/
+var baseServiceUrl = "https://192.168.1.28:1706/piwebapi/"; /***PI WEBAPI URL***/
 var user = "Asif";/***USERNAME***/
 var pass = "ECG@123";/***PASSWORD***/
 var afServerName = "ECG-DEV-SERVER";/***AF SERVER NAME***/
 var afDatabaseName = "Aasif_Development";//Aasif_Development//"Mayhar";/***DATABASE NAME***/
 var EnumerationSets = "CONNECTED_TO_PLANT";/***ENUMERATION SET NAME***/
+var masterTemplateName = "TUZ";/***DEFAULT TEMPLATE NAME***/
 var templateName = "BLOCK";/***DEFAULT TEMPLATE NAME***/
 var newtemplateName = "MAGISTRAL";/***DEFAULT TEMPLATE NAME***/
 var catNameGenrate = "asset_design_";/***CATEGORY NAME GENRATION IN CODING NOT REMOVE THIS***/
@@ -80,7 +81,7 @@ var EFData = [
 ]; ///EVENT FRAME DATA JSON ARRAY 
 var defaultColor="#ccc";
 var minLTclr="#FF0000";
-var btwnLTHTclr="#FFFF00";
+var btwnLTHTclr="#2196F3";
 var maxHTclr="#1ce74a";
 var tableAttrColors = [
     {
@@ -100,13 +101,13 @@ var tableAttrColors = [
     },
     { 
         "name":"BALANCE","LT":10,"HT":200
-    },
-    { 
-        "name":"CONNECTION_TO_PLANT","LT":10,"HT":180
-    },
-    { 
-        "name":"STATUS","LT":5,"HT":180
     }
+//    { 
+//        "name":"CONNECTION_TO_PLANT","LT":10,"HT":180
+//    },
+//    { 
+//        "name":"STATUS","LT":5,"HT":180
+//    }
 ]; ///TABLE ELEMENT ATTRIBUTES 
 
 /***CONFIGURATION SETTING***/

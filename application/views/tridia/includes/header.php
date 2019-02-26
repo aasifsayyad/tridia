@@ -18,6 +18,9 @@
   <link href="<?php echo base_url();?>assets/css/app-style.css" rel="stylesheet"/>  
   <link href="<?php echo base_url();?>assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link href="<?php echo base_url();?>assets/css/styles.css" rel="stylesheet" type="text/css"/>
+  <script src="<?php echo base_url();?>assets/js/jquery-3.3.1.js" type="text/javascript"></script>
+  <!--<script src="https://code.highcharts.com/highcharts.src.js"></script>-->
   <script src="<?php echo base_url();?>assets/js/highcharts.js" type="text/javascript"></script>
+  <!--<script src="https://code.highcharts.com/highcharts.js" type="text/javascript"></script>-->
   <script src="<?php echo base_url();?>assets/js/xrange.js" type="text/javascript"></script>
 </head>

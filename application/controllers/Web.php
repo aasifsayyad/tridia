@@ -100,6 +100,15 @@ class Web extends CI_Controller
            redirect(base_url());
         }
     }
+     public function charts()
+    {
+        if ($this->tridia_model->is_logged_in() == 1) {
+            $data['title'] = "Charts";
+            $this->load->view('tridia/charts', $data);
+        } else {
+           redirect(base_url());
+        }
+    }
     public function popup($account_type = '', $page_name = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '', $param6 = '')
     {
         $page_data['param2'] = $param2;

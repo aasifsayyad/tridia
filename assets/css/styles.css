@@ -306,19 +306,21 @@ body::-webkit-scrollbar-track,.chartDiv::-webkit-scrollbar-track,.style-1::-webk
 }
 .attributeData, .attributeData1{
     float:left;
-    width: 19%;
-    padding: 0px;
+    width: 31%;
+    padding: 3px;
     height: auto;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: 12px;
-    color: #223035;
-    margin-right: 5px;
-    box-shadow: 1px 1px 1px 0px #6c757d, 0 0px 6px 0 #f8f9fa;
+    border-radius: 5px;
+    color: #343a40;
+    border: 1px solid rgba(0, 0, 0, .26);
+    margin-right: 10px;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2), 0 0px 6px 0 rgba(0, 0, 0, .26);
 }
 .attributeData1 div,.attributeData div{
-    border: 1px solid #ccc;
-    height: 80px;
+    /* border: 1px solid #ccc; */
+    height: 75px;
 }
 .attributeData span{
         font-size: 12px;
@@ -345,12 +347,13 @@ body::-webkit-scrollbar-track,.chartDiv::-webkit-scrollbar-track,.style-1::-webk
         width: 50%;
         height: 33px !important;
         font-size: 10px;
+        border-radius: 3px;
         text-align: left;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.2);
         padding: 4px 0px 0px 0px !important;
         text-transform: none;
         margin-bottom: 5px !important;
-        box-shadow: 1px 1px 1px 0px var(--dark);
+        box-shadow: 1px 1px 1px 0px #f8f9fa;
 }
 .labelListAttr{
         width: 100%;
@@ -405,7 +408,7 @@ body::-webkit-scrollbar-track,.chartDiv::-webkit-scrollbar-track,.style-1::-webk
     width: 100%;
     height: 35px;
     margin: 0px 0px 6px 0px;
-    background-color: #dee2e6;
+    background-color: #f8f9fa;
 }
 .paramterListCellChild {
     padding: 0px;
@@ -471,10 +474,11 @@ body::-webkit-scrollbar-track,.chartDiv::-webkit-scrollbar-track,.style-1::-webk
  .scales{
      width: 40%;
      padding: 5px;
-     border: 1px solid #6c757d;
+     border: 1px solid rgba(0, 0, 0, .26);
      height: 33px;
+     border-radius: 5px;
      margin: 0px 0px 2px 5px;
-     box-shadow: 1px 1px 1px 0px var(--dark);
+     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
  }
  .ChildAttrs{
      padding-right: 0px;

@@ -8,6 +8,7 @@ app.config(function($routeProvider){
     .when("/BlockMagistral",{controller:"blockMagistralController",templateUrl:base_url + "Web/blockMagistral"})
     .when("/Chronicles",{controller:"chroniclesController",templateUrl:base_url + "Web/chronicles"})
     .when("/Ranking",{controller:"rankingController",templateUrl:base_url + "Web/ranking"})
+    .when("/Charts",{controller:"chartController",templateUrl:base_url + "Web/charts"})
     .otherwise({redirectTo:'/'})});
 
 var processJsonContent=function(url,type,data){

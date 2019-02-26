@@ -1,9 +1,9 @@
  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
         <div class="brand-logo" ng-click="setMaster('Home')">
             <a href="#!Home">
-             <h5 class="logo-icon logo-text"><img src="<?php echo base_url();?>assets/images/favicon.png" class="logo-icon" alt="ECG" style="width:65px" />ECGiT</h5>
-           </a>
-	</div>
+                <h5 class="logo-icon logo-text"><img src="<?php echo base_url();?>assets/images/favicon.png" class="logo-icon" alt="ECG" style="width:65px" />ECGiT</h5>
+            </a>
+        </div>
     <ul class="sidebar-menu do-nicescrol">
           <li class="sidebar-header"></li>       
           <li ng-class="{active : isSelected('Home')}">
@@ -31,7 +31,7 @@
                   <i class="ti-layout-grid2"></i> <span>Block Magistral</span>
               </a>
           </li>
-		  <li ng-class="{active : isSelected('Chronicles')}">
+          <li ng-class="{active : isSelected('Chronicles')}">
               <a href="#!Chronicles" ng-click="setMaster('Chronicles')" class="waves-effect">
                   <i class="ti-bar-chart-alt"></i> <span>Chronicles</span>
               </a>
@@ -41,10 +41,15 @@
                   <i class="ti-list-ol"></i> <span>Ranking</span>
               </a>
           </li>
+          <li ng-class="{active : isSelected('Charts')}">
+              <a href="#!Charts" ng-click="setMaster('Charts')" class="waves-effect">
+                  <i class="ti-pie-chart"></i> <span>Charts</span>
+              </a>
+          </li>
           <li>
               <a href="<?php echo base_url();?>Home/logout" class="waves-effect">
                   <i class="ti-power-off"></i> <span>Logout</span>
               </a>
           </li>
     </ul>	 
-   </div>    
+ </div>    
