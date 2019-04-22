@@ -1,10 +1,10 @@
 /***CONFIGURATION SETTING***/
 var base_url = "http://localhost:8080/web/";
-var baseServiceUrl = "https://192.168.1.28:1706/piwebapi/"; /***PI WEBAPI URL***/
-var user = "Asif";/***USERNAME***/
-var pass = "ECG@123";/***PASSWORD***/
-var afServerName = "ECG-DEV-SERVER";/***AF SERVER NAME***/
-var afDatabaseName = "Aasif_Development";//Aasif_Development//"Mayhar";/***DATABASE NAME***/
+var baseServiceUrl = "https://localhost:1706/piwebapi/"; /***PI WEBAPI URL***/
+var user = "Ashif";/***USERNAME***/
+var pass = "Ecgit@123";/***PASSWORD***/
+var afServerName = "ASHIF-DMGLBQI";//"ECG-DEV-SERVER";/***AF SERVER NAME***/
+var afDatabaseName = "Apoio";//Aasif_Development//"Mayhar";/***DATABASE NAME***/
 var EnumerationSets = "CONNECTED_TO_PLANT";/***ENUMERATION SET NAME***/
 var masterTemplateName = "TUZ";/***DEFAULT TEMPLATE NAME***/
 var templateName = "BLOCK";/***DEFAULT TEMPLATE NAME***/
