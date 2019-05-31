@@ -73,24 +73,7 @@ app.controller('chartController', function($scope) {
         $("#cellGraphList").empty(); 
         $(".tabDiv").show();
         var WebId = $("#elementList").val();
-        
-          /***GET CHILD ELEMENTS OF SELECTED BLOCK ELEMENT START***/  
-            var url = baseServiceUrl+'elements/' + WebId + '/elements'; 
-            //console.log(url);
-            var childElementList =  processJsonContent(url, 'GET', null);
-                $.when(childElementList).fail(function () {
-                    //warningmsg("Cannot Find the Child Element On Change.");
-                    console.log("Cannot Find the child Element.");
-                });
-                $.when(childElementList).done(function () {  
-                    $("#elementChildList").append("<option value='' selected disabled>---Select Elements---</option>");
-                     var elementsChildListItems = (childElementList.responseJSON.Items);     
-                     $.each(elementsChildListItems,function(key) {
-                          $("#elementChildList").append("<option data-name="+elementsChildListItems[key].Name+" value="+elementsChildListItems[key].WebId+">"+elementsChildListItems[key].Name+"</option>"); 
-                        });
-                });
-        /***GET CHILD ELEMENTS OF SELECTED BLOCK ELEMENT END***/ 
-        
+                
     /*****GET CHART DATA AND VALUE AND TIMESTAMP ATTRIBUTES START****/
         var url = baseServiceUrl + 'elements/' + WebId + '/attributes';
         var attributesList =  processJsonContent(url, 'GET', null);
@@ -170,70 +153,10 @@ app.controller('chartController', function($scope) {
           }	 
 });
 
-
-/****ADD CELL GRAPH START****/
-   var maincell=1; //Child Chart Value Declaration
-   function addCell(){       
-        if (!$("#elementChildList option:selected").val()) {
-            warningmsg("No Element Selected..!");
-            return false;
-        }
-        else{  
-            $("#cellGraphList").append('<div class="col-12 col-lg-6 col-xl-1 ChildAttrs childListDiv'+maincell+'">\n\
-                                <div class="card">\n\
-                                    <div class="card-body childGraph style-1">\n\
-                                        <ul id="cellgraph'+maincell+'"></ul>\n\
-                                    </div>\n\
-                                </div>\n\
-                            </div>\n\
-                            <div class="col-12 col-lg-6 col-xl-5 ChildAttrsChart childListDiv'+maincell+'">\n\
-                                <button  type="button" onclick="removeDiv('+maincell+');" class="btn btn-sm btn-danger childChartClose"><i class="fa fa-close"></i></button>\n\
-                                <div class="card">\n\
-                                    <div class="card-body childGraph" id="cellgraphChart'+maincell+'">\n\
-                                        </div>\n\
-                                </div>\n\
-                            </div></div>');               
-        $("#cellGraphList").show();  
-            var inc = maincell;
-            var childName = $("#elementChildList option:selected").attr("data-name");//childElementName
-            var ChildWebId = $("#elementChildList").val();         //childWebId 
-            /*****CHILD ATTRIBUTES LOAD START*****/
-            var url = baseServiceUrl+'elements/' + ChildWebId + '/attributes'; 
-            var childParaData =  processJsonContent(url, 'GET', null);
-            $.when(childParaData).fail(function () {
-                console.log("Cannot Find the child Parameters.");
-            });
-            $.when(childParaData).done(function () {
-                $(".childGraph").append('<input type="hidden" id="childId'+inc+'" value="'+ChildWebId+'"><input type="hidden" id="childName'+inc+'" value="'+childName+'">');
-                $("#cellgraph"+inc).append('<h6 style="color:black;">'+childName+'</h6>');
-                 var childAttributesItems = (childParaData.responseJSON.Items);
-                 var cat=1;
-                 $.each(childAttributesItems,function(key) {  
-                     var category = childAttributesItems[key].CategoryNames;                    
-                     $.each(category,function(key1) {
-                         if(trendCat===category[key1]){
-                        $("#cellgraph"+inc).append('<li class="paramterListCellChild paramterList'+cat+'">\n\
-                            <input type="checkbox" id="elemChildList'+inc+cat+'" data-id="'+cat+'"  data-name="'+childAttributesItems[key].Name+'" onchange="getChildMap('+inc+');" class="paraList getChildChart" value="'+childAttributesItems[key].WebId+'" name="selectorChild'+inc+'">\n\
-                            <label class="labelListCellChild leftLabel" for="elemChildList'+inc+cat+'">'+childAttributesItems[key].Name+'</label>\n\
-                            </li>');  
-                        }
-                    });                    
-                    cat++;
-                });
-            });
-             /*****CHILD ATTRIBUTES LOAD END*****/
-            maincell++; 
-            $('#elementChildList option:selected').remove();   ///Remove List Items   
-        }        
-     }
-    /****ADD CELL GRAPH END****/ 
     
 /***LOAD ALL CHARTS ON DATE OR TIME CHANGE***/
 function getCharts(){   
     loadEventFrame();
-    for(var i=1;i<maincell;i++){
-    getChildMap(i);
-    }
 }
 /***LOAD ALL CHARTS ON DATE OR TIME CHANGE***/
  
@@ -283,7 +206,7 @@ function loadEventFrame(){
         var min = $("#min"+cat).val();
         var max = $("#max"+cat).val();       
         chkArray.push(WebId); 
-        var url = baseServiceUrl+'streams/' + WebId + '/interpolated?startTime='+startDateTime+'&endTime='+endDateTime+'&interval=1d&searchFullHierarchy=true';
+        var url = baseServiceUrl+'streams/' + WebId + '/recorded?startTime='+startDateTime+'&endTime='+endDateTime+'&interval=1h&searchFullHierarchy=true';
         //console.log(url);
         var attributesData =  processJsonContent(url, 'GET', null);
             $.when(attributesData).fail(function () {
@@ -516,126 +439,3 @@ function loadEventFrame(){
          });            
      }
     /*****LOAD EVENT FRAME DATA END****/
-             
-/****LOAD CHILD ATTRIBUTES CHARTS****/
- function getChildMap(maincell){
-        var startDate = $('#startDate').val();
-        var startTime = $("#startTime").val();
-        var startDateTime = (startDate + 'T' + startTime+'Z');
-        var endDate = $('#endDate').val();
-        var endTime = $("#endTime").val();
-        var endDateTime = (endDate + 'T' + endTime+'Z'); 
-        var data=[];
-        var yAxisData=[];
-        var sr=0;
-        var chkArray=[];
-        var vdate='';
-        var vtime='';
-        startDate = startDate.split('-');
-        endDate = endDate.split('-');
-        startTime = startTime.split(':');
-        endTime = endTime.split(':');   
-        $.each($("input[name='selectorChild"+maincell+"']:checked"), function(){ 
-            var data1=[];
-            var WebId = $(this).val();
-            var name = $(this).attr("data-name");
-             chkArray.push(WebId); 
-            var url = baseServiceUrl+'streams/' + WebId + '/interpolated?startTime='+startDateTime+'&endTime='+endDateTime+'&interval=1d&searchFullHierarchy=true'; 
-            var attributesData =  processJsonContent(url, 'GET', null);
-            $.when(attributesData).fail(function () {
-                console.log("Cannot Find the Attributes.");
-            });
-            $.when(attributesData).done(function () {
-                 var attributesDataItems = (attributesData.responseJSON.Items);
-                 var unit = '';
-                $.each(attributesDataItems,function(key) {                    
-                 var Timestamp = attributesDataItems[key].Timestamp;
-                        var val = (Math.round((attributesDataItems[key].Value) * 100) / 100);                         
-                        if(isNaN(val)){
-                           // console.log(val);//Skipping NaN Values
-                        }else{
-                             vdate = (Timestamp).substring(0,10);//start date
-                            vtime = (Timestamp).substring(11,19);//start time                                   
-                                    vdate = vdate.split('-');//start date split array
-                                    vtime = vtime.split(':');//start time split array
-                            var val = Math.round((attributesDataItems[key].Value) * 100) / 100;
-                            var dt = Date.UTC(vdate[0],(vdate[1]-1),vdate[2],vtime[0],vtime[1],vtime[2]);
-                            data1.push([dt,val]);
-                            //xAxis.push(Timestamp); 
-                            unit = attributesDataItems[key].UnitsAbbreviation;
-                        }                        
-                  });    
-                   $.each(eventsColorsData,function(key) {
-                       if(name===eventsColorsData[key].name){
-                             data.push({
-                                name: name,
-                                type: 'spline',
-                                yAxis: sr,
-                                color:eventsColorsData[key].color,
-                                data: data1,
-                                tooltip: { valueSuffix: unit}
-                            });  
-                            yAxisData.push({
-                                min:eventsColorsData[key].min,
-                                max:eventsColorsData[key].max,
-                                title: {text: ''},
-                                labels: {format: '{value}'+unit,
-                                    style: {color: eventsColorsData[key].color},
-                                    enabled: false
-                                }
-                            }); 
-                       }
-                   });    
-                     
-             var Childchart =    Highcharts.chart('cellgraphChart'+maincell, {
-                        chart: {
-                            zoomType: 'xy',
-                             type: 'spline'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: ''
-                        },
-                         xAxis: {
-                                  type: 'datetime'
-                                },
-                        yAxis: yAxisData, //Y AXIS RANGE DATA
-                        tooltip: {
-                            shared: true
-                        },
-                         plotOptions: {
-                            spline: {
-                                lineWidth: 1,
-                                states: {
-                                    hover: {
-                                        lineWidth: 2
-                                    }
-                                },
-                            }
-                        },
-                        legend: {
-                            layout: 'vetical',
-                            align: 'right',
-                            x: 0,
-                            verticalAlign: 'top',
-                            y: 40,
-                            floating: true,
-                            enabled: false
-                        },
-                    series: data //PI ATTRIBUTES RECORDED DATA
-                });    
-                 Childchart.xAxis[0].setExtremes(Date.UTC(startDate[0],(startDate[1]-1),startDate[2],startTime[0],startTime[1],startTime[2]), Date.UTC(endDate[0],(endDate[1]-1),endDate[2],endTime[0],endTime[1],endTime[2]));//EXTREME POINTSET
-                 sr++;
-            });            
-        });  
-            if(chkArray.length === 0){
-                $("#cellgraphChart"+maincell).empty(); //Empty current chart Div  
-            }else{ //console.log(chkArray);
-            }
-    }
-/****LOAD CHILD ATTRIBUTES CHARTS****/
-
-  /*********MAIN CHARTS SECTION END**********/  
-  
